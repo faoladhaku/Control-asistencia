@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.4.5
 -- http://www.phpmyadmin.net
 --
@@ -6,7 +6,7 @@
 -- Tiempo de generación: 05-07-2015 a las 17:28:15
 -- Versión del servidor: 5.5.16
 -- Versión de PHP: 5.3.8
-CREATE DATEBASE control;
+CREATE DATABASE control;
 USE control;
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -102,11 +102,12 @@ CREATE TABLE IF NOT EXISTS `curso` (
 
 CREATE TABLE IF NOT EXISTS `docente` (
   `docente_dni` varchar(8) NOT NULL,
-  `docente_pass` varchar(45) NOT NULL,
   `docente_nombre` varchar(45) NOT NULL,
   `docente_apellido_pat` varchar(45) NOT NULL,
   `docente_apellido_mat` varchar(45) DEFAULT NULL,
   `docente_email` varchar(45) DEFAULT NULL,
+  `docente_direccion` varchar(100) DEFAULT NULL,
+  `docente_telefono` varchar(45) DEFAULT NULL,
   `state` tinyint(1) DEFAULT '1',
   `created_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -146,6 +147,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_nombre` varchar(20) NOT NULL,
   `usuario_pass` varchar(20) NOT NULL,
+  `state` tinyint(1) DEFAULT '1',
   `created_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`usuario_id`)
