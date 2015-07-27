@@ -1,0 +1,137 @@
+body{
+	background: url(../img/background_index_green.jpeg);
+}
+		
+.cabeza{
+	background: #BDB76B;
+	padding: 1%;
+	opacity: 0.7;
+	border-radius: 15px;
+	color: black;
+	font-family: cursive;
+	font-size: 400%;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+#barra{
+	background: #BC839D;
+	padding-bottom: 22px;
+	height: 10px;
+	border-radius: 10px;	
+	list-style-type: none;
+}
+			
+#barra li{
+	display: inline;
+	width: 20px;
+	background: #5F384A;
+	padding: 15px;
+	border-radius: 15px 15px 0px 0px;
+	border-style: solid 10px;
+	border-color: red;
+}
+
+#barra li a{
+	font: bold 90% Arial;
+	text-decoration: none;
+	color: white;
+}
+			
+#barra li:hover{
+	background-color: #691F40;
+}
+
+#barra li:active{
+	background-color: #411428;
+}
+
+#campo{
+	overflow: hidden;
+	height: 80%;
+	width: 100%;
+}
+
+#barra_lateral{
+	float:left;
+	background: #BC839D;
+	height: 100%;
+	width: 24.5%;
+}
+
+#barra_lateral li{
+	background-color: #5F384A;
+    color: white;
+    padding: 10px 20px;
+	border-radius: 10px 0px 0px 10px;
+	margin: 7px 0px 5px 5px;
+	list-style-type: none;
+}
+
+#barra_lateral li a{
+	font: bold 80% Arial;
+	text-decoration: none;
+	color: white;
+}
+
+#barra_lateral li:hover{
+	background-color: #691F40;
+}
+
+#barra_lateral li:active{
+	background-color: #411428;
+}
+
+#main_form{
+	overflow: hidden;
+	width: 75.5%;
+	padding-top: 25px;
+}
+
+#content_form{
+	border-radius: 15px;
+	background: white;
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0px 10px 0px;
+}
+
+#content_form  table{
+	margin: 0 auto;
+	text-align: left;
+}
+
+#content_form  table td{
+	text-align: right;
+}
+
+.form-group{
+	font-family: verdana;
+	font-size: 15px;
+	font-weight: bold;
+}
+	
+.btn-default{
+	padding: 15px;
+	width: 100px;
+	border-radius: 15px;
+	font:  bold 90% Arial;
+}
+
+.form-control{
+	border-radius: 10px;
+	padding: 10px;
+	width: 250px;
+}
+
+label.error {
+    color: #FB3A3A;
+    display: block;
+    margin: 4px 0 5px 0px;
+    padding: 0;
+    text-align: left;
+    width: 250px;
+}
+		
+
