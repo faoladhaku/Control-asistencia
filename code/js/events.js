@@ -3,8 +3,8 @@ function clickSignIn() {
 	changeSubMenu();
 }
 
-function clickEditPerfil() {
-    $('#main_form').load('pages/editperfil.html');
+function clickdocente() {
+    $('#main_form').load('pages/docente.html');
 	changeSubMenu();
 }
 
@@ -13,8 +13,12 @@ function clickSignOut() {
 	changeSubMenu();
 }
 
-function clickSolutions() {
-	$('#main_form').load('pages/solutions.html');
+function clickcarrera() {
+	$('#main_form').load('pages/carrera.html');
+	changeSubMenu();
+}
+function clickcurso() {
+	$('#main_form').load('pages/curso.html');
 	changeSubMenu();
 }
 
