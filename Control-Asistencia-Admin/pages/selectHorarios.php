@@ -5,10 +5,11 @@
 	mysql_select_db("control", $link) or die("No se encontro db");
 	
 	$word = $_POST['word'];
+	$tipo = $_POST['tipo'];
 	
-	$query = "SELECT * FROM curso INNER JOIN cc ON curso.curso_id = cc.curso_id";
-	$query .= " INNER JOIN carrera ON cc.carrera_id = carrera.carrera_id";
-	$query .= " WHERE curso.curso_nombre LIKE '%$word%' or cc.cc_codigo LIKE '%$word%'";
+	$query = "SELECT * FROM docente INNER JOIN horario ON docente.docente_id = horario.docente_id";
+	$query .= " INNER JOIN cc ON cc.cc_id = horario.cc_id";
+	$query .= " WHERE horario.horario_tipo = '$tipo' and (docente.docente_nombre LIKE '%$word%' or docente.docente_apellido_pat LIKE '%$word%')";
 		
 	$result = mysql_query($query) or die(mysql_error());
 	
