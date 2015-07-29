@@ -1,0 +1,237 @@
+html { 
+	overflow:auto; 
+}
+
+body{
+	background: url(../img/background_index_tapiz.jpeg);
+	min-height: 100%;
+	position:relative;
+}
+		
+.cabeza{
+	background: #1b519b;
+	padding: 1%;
+	opacity: 0.7;
+	border-radius: 15px;
+	color: black;
+	font-family: sans-serif,verdana,arial;
+	font-size: 300%;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+#barra{
+	background: #93b7f9;
+	padding-bottom: 22px;
+	height: 10px;
+	opacity: 0.8;
+	border-radius: 10px;	
+	list-style-type: none;
+}
+			
+#barra li{
+	display: inline;
+	width: 20px;
+	background: #4f89f3;
+	padding: 15px;
+	border-radius: 15px 15px 0px 0px;
+	border-style: solid 10px;
+	border-color: red;
+}
+
+#barra li a{
+	font: bold 90% Arial;
+	text-decoration: none;
+	color: white;
+}
+			
+#barra li:hover{
+	background-color: #346fdb;
+}
+
+#barra li:active{
+	background-color: #1856c8;
+}
+
+#nameUser{
+	display: inline-table;
+	float: right;
+	margin-right: 10px;
+	padding-top: 7px;
+	font: bold 90% Arial;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#campo{
+	height: 80%;
+	width: 100%;
+}
+
+#barra_lateral{
+	float:left;
+	opacity: 0.8;
+	background: #93b7f9;
+	height: 100%;
+	width: 24.5%;
+}
+
+#barra_lateral li{
+	background-color: #4f89f3;
+    color: white;
+    padding: 10px 20px;
+	border-radius: 10px 0px 0px 10px;
+	margin: 7px 0px 5px 5px;
+	list-style-type: none;
+}
+
+#barra_lateral li a{
+	font: bold 80% Arial;
+	text-decoration: none;
+	color: white;
+}
+
+#barra_lateral li:hover{
+	background-color: #346fdb;
+}
+
+#barra_lateral li:active{
+	background-color: #1856c8;
+}
+
+#main_form{
+	overflow: hidden;
+	width: 75.5%;
+	padding-top: 25px;
+}
+
+#content_form{
+	opacity: 0.9;
+	border-radius: 15px;
+	background: white;
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0px 15px 0px;
+	margin-bottom: 10px;
+}
+
+#content_form  table{
+	margin: 0 auto;
+	text-align: left;
+}
+
+#content_form  table td{
+	text-align: right;
+}
+
+#search_form{
+	border-radius: 15px;
+	background: white;
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0px 15px 0px;
+}
+
+#search_form  table{
+	margin: 0 auto;
+	text-align: left;
+}
+
+.tableSearch th{
+	font: bold 90% Arial;
+}
+
+.tableSearch {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+.tableSearch th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+.tableSearch td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+.classHide {
+	display: none;
+}
+
+.form-title{
+	font-family: verdana;
+	font-size: 18px;
+	font-weight: bold;
+	float: center;
+	color: #0f3e96;
+}
+
+.form-group{
+	font-family: verdana;
+	font-size: 15px;
+	font-weight: bold;
+}
+	
+.btn-default{
+	padding: 15px;
+	width: 100px;
+	border-radius: 15px;
+	font:  bold 90% Arial;
+}
+
+.form-control{
+	border-radius: 10px;
+	padding: 10px;
+	width: 250px;
+	margin-top: 5px;
+}
+
+.form-select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 250px;
+	height: 34px;
+	overflow: hidden;
+	border-radius: 5px;
+	margin-top: 5px;
+	background: url(../img/arrow_down.gif) no-repeat right #ddd;
+	border: 1px solid #ccc;
+}
+
+.form-search{
+	border-radius: 10px;
+	padding: 10px;
+	width: 250px;
+	margin-bottom: 5px;
+}
+
+label.error {
+    color: #FB3A3A;
+    display: block;
+    margin: 4px 0 5px 0px;
+    padding: 0;
+    text-align: left;
+    width: 250px;
+}
+
+.rptaForm{
+	color: #FB3A3A;
+    float: center;
+    margin: 4px 0 5px 0px;
+    padding: 0;
+    text-align: center;
+    width: 250px;
+}
