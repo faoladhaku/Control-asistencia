@@ -211,6 +211,33 @@ body{
 	border: 1px solid #ccc;
 }
 
+.form-control-add{
+	border-radius: 5px;
+	padding: 5px;
+	width: 130px;
+	margin-top: 5px;
+}
+
+.btn-default-add{
+	padding: 5px;
+	width: 30px;
+	border-radius: 5px;
+	font:  bold 90% Arial;
+}
+
+.form-select-add {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 95px;
+	height: 34px;
+	overflow: hidden;
+	border-radius: 5px;
+	margin-top: 5px;
+	background: url(../img/arrow_down.gif) no-repeat right #ddd;
+	border: 1px solid #ccc;
+}
+
 .form-search{
 	border-radius: 10px;
 	padding: 10px;

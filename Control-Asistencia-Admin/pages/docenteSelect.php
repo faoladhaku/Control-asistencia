@@ -4,12 +4,14 @@
 	
 	mysql_select_db("control", $link) or die("No se encontro db");
 	
-	$word = $_POST['word'];
+	$cond = $_POST['cond'];
 	
-	$query = "SELECT * FROM curso INNER JOIN cc ON curso.curso_id = cc.curso_id";
-	$query .= " INNER JOIN carrera ON cc.carrera_id = carrera.carrera_id";
-	$query .= " WHERE curso.curso_nombre LIKE '%$word%' or cc.cc_codigo LIKE '%$word%'";
-		
+	$query = "SELECT DISTINCT cc.cc_id, cc.cc_codigo, curso.curso_nombre";
+	$query .= " FROM docente INNER JOIN horario ON docente.docente_id = horario.docente_id";
+	$query .= " INNER JOIN cc ON cc.cc_id = horario.cc_id";
+	$query .= " INNER JOIN curso ON curso.curso_id = cc.curso_id";
+	$query .= " WHERE horario.docente_id = '$cond' ORDER BY curso.curso_nombre";
+	
 	$result = mysql_query($query) or die(mysql_error());
 	
 	header("Content-Type: text/javascript; charset=utf-8");

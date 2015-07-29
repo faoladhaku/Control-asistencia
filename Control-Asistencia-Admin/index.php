@@ -33,7 +33,7 @@
 		
 			<li><a href="#" id="iniciar">INICIAR</a></li>
 			<li><a href="#" id="registro">REGISTROS</a></li>
-			<li id="main"><a href="#" id="buscar">HORARIOS</a></li>
+			<li id="main"><a href="#" id="horario">HORARIOS</a></li>
 			<div id="nameUser"></div>
 			
 		</div>

@@ -28,9 +28,16 @@ function clickcurso() {
 	changeSubMenu();
 }
 
-function clickSearchSolutions() {
+function clickCreateHorario() {
 	if(checkSession()){
-		$('#main_form').load('pages/buscar.html');
+		$('#main_form').load('pages/createHorario.html');
+	}
+	changeSubMenu();
+}
+
+function clickRecoverHorario() {
+	if(checkSession()){
+		$('#main_form').load('pages/recoverHorario.html');
 	}
 	changeSubMenu();
 }
@@ -53,9 +60,9 @@ function checkSession(){
 $(document).ready(function(){
 		
 	/*cuando se inicia la recarga de la pagina*/
-	$('#campo').load('pages/search.html', function(responseTxt, statusTxt, xhr){
+	$('#campo').load('pages/horario.html', function(responseTxt, statusTxt, xhr){
 		if(statusTxt == "success")
-			clickSearchSolutions();
+			clickCreateHorario();
 			$('#main_lateral').css('background-color', '#0f3e96');
 		if(statusTxt == "error")
 			alert("Error: " + xhr.status + ": " + xhr.statusText);
@@ -75,10 +82,10 @@ $(document).ready(function(){
 				alert("Error: " + xhr.status + ": " + xhr.statusText);
 		});
 	});
-	$('#buscar').click(function(){
-		$('#campo').load('pages/search.html', function(responseTxt, statusTxt, xhr){
+	$('#horario').click(function(){
+		$('#campo').load('pages/horario.html', function(responseTxt, statusTxt, xhr){
 			if(statusTxt == "success")
-				clickSearchSolutions();
+				clickCreateHorario();
 				$('#main_lateral').css('background-color', '#0f3e96');
 			if(statusTxt == "error")
 				alert("Error: " + xhr.status + ": " + xhr.statusText);
