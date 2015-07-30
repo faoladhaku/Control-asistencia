@@ -33,13 +33,16 @@ CREATE TABLE `asistencia` (
   `asistencia_hora_ingreso` time NOT NULL,
   `asistencia_hora_salida` time NOT NULL,
   `asistencia_tema` varchar(200) NOT NULL,
+  `asistencia_estado` tinyint(1) DEFAULT '0',
+  `asistencia_dif` int(10) unsigned DEFAULT '0',
+  `asistencia_sig` varchar(1) DEFAULT NULL,
   `state` tinyint(1) DEFAULT '1',
   `created_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `changed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`asistencia_id`),
   KEY `fk_asistencia_horario` (`horario_id`),
   CONSTRAINT `fk_asistencia_horario` FOREIGN KEY (`horario_id`) REFERENCES `horario` (`horario_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `asistencia`
@@ -68,10 +71,6 @@ CREATE TABLE `carrera` (
 --
 
 /*!40000 ALTER TABLE `carrera` DISABLE KEYS */;
-INSERT INTO `carrera` (`carrera_id`,`carrera_nombre`,`state`,`created_on`,`changed_on`) VALUES 
- (2,'Agronomia Industrial',1,'2015-07-28 17:38:08','2015-07-28 17:38:23'),
- (3,'Ciencia de la Computacion',1,'2015-07-28 18:29:39','2015-07-28 18:29:39'),
- (4,'Administracion',1,'2015-07-28 18:29:52','2015-07-28 18:29:52');
 /*!40000 ALTER TABLE `carrera` ENABLE KEYS */;
 
 
@@ -103,10 +102,6 @@ CREATE TABLE `cc` (
 --
 
 /*!40000 ALTER TABLE `cc` DISABLE KEYS */;
-INSERT INTO `cc` (`cc_id`,`carrera_id`,`curso_id`,`cc_codigo`,`cc_fecha_ini`,`cc_fecha_fin`,`cc_horas_sem`,`state`,`created_on`,`changed_on`) VALUES 
- (34,2,12,'QUIAGR1507','2015-07-01','2015-07-05',6,1,'2015-07-29 00:19:47','2015-07-29 00:19:47'),
- (35,4,14,'MATADM1507','2015-07-01','2015-07-26',10,1,'2015-07-29 02:35:46','2015-07-29 02:35:46'),
- (37,2,16,'FISAGR1507','2015-07-02','2015-10-31',5,1,'2015-07-29 06:27:46','2015-07-29 06:27:46');
 /*!40000 ALTER TABLE `cc` ENABLE KEYS */;
 
 
@@ -129,10 +124,6 @@ CREATE TABLE `curso` (
 --
 
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-INSERT INTO `curso` (`curso_id`,`curso_nombre`,`state`,`created_on`,`changed_on`) VALUES 
- (12,'Quimica',1,'2015-07-28 22:56:47','2015-07-28 22:56:47'),
- (14,'Matematica',1,'2015-07-29 02:35:46','2015-07-29 02:35:46'),
- (16,'Fisica',1,'2015-07-29 06:27:46','2015-07-29 06:27:46');
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 
 
@@ -161,9 +152,6 @@ CREATE TABLE `docente` (
 --
 
 /*!40000 ALTER TABLE `docente` DISABLE KEYS */;
-INSERT INTO `docente` (`docente_id`,`docente_dni`,`docente_nombre`,`docente_apellido_pat`,`docente_apellido_mat`,`docente_email`,`docente_direccion`,`docente_telefono`,`state`,`created_on`,`changed_on`) VALUES 
- (3,'45634913','Julio','Quispe','Quicano','julioqq29@gmail.com','Av 13 de junio','959285233',1,'2015-07-28 16:27:37','2015-07-28 16:27:37'),
- (9,'56652100','Claudia','Laos','Carpio','clau@gmail.co','los olmos 545','',1,'2015-07-29 03:51:42','2015-07-29 03:51:42');
 /*!40000 ALTER TABLE `docente` ENABLE KEYS */;
 
 
@@ -187,22 +175,15 @@ CREATE TABLE `horario` (
   PRIMARY KEY (`horario_id`),
   KEY `fk_horario_cc` (`cc_id`),
   KEY `fk_horario_docente` (`docente_id`),
-  CONSTRAINT `fk_horario_docente` FOREIGN KEY (`docente_id`) REFERENCES `docente` (`docente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_horario_cc` FOREIGN KEY (`cc_id`) REFERENCES `cc` (`cc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  CONSTRAINT `fk_horario_cc` FOREIGN KEY (`cc_id`) REFERENCES `cc` (`cc_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_horario_docente` FOREIGN KEY (`docente_id`) REFERENCES `docente` (`docente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `horario`
 --
 
 /*!40000 ALTER TABLE `horario` DISABLE KEYS */;
-INSERT INTO `horario` (`horario_id`,`cc_id`,`docente_id`,`horario_dia`,`horario_hora_ini`,`horario_hora_fin`,`horario_fecha`,`horario_tipo`,`state`,`created_on`,`changed_on`) VALUES 
- (1,35,3,'Lunes','08:00:00','10:15:00',NULL,1,1,'2015-07-29 03:25:50','2015-07-29 03:25:50'),
- (2,34,3,'Jueves','10:15:00','12:30:00',NULL,1,1,'2015-07-29 03:25:50','2015-07-29 04:27:46'),
- (3,34,9,'Sabado','09:30:00','12:30:00',NULL,1,1,'2015-07-29 03:52:12','2015-07-29 03:52:12'),
- (5,35,9,'Lunes','18:00:00','20:15:00',NULL,1,1,'2015-07-29 05:07:25','2015-07-29 05:07:25'),
- (7,35,9,'Miercoles','08:00:00','11:00:00',NULL,1,1,'2015-07-29 05:07:50','2015-07-29 05:07:50'),
- (8,34,3,'','08:00:00','11:00:00','2015-07-28',0,1,'2015-07-29 05:29:57','2015-07-29 06:19:13');
 /*!40000 ALTER TABLE `horario` ENABLE KEYS */;
 
 
