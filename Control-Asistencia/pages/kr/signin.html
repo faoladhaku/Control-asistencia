@@ -1,0 +1,72 @@
+<!DOCTYPE html5>
+<html>
+	<head>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$("#login").validate({ 
+			        rules: { 
+						user: "required",
+						pass: "required"
+			        }, 
+			        messages: { 
+						user: "Ingrese el usuario.",
+						pass: "Ingrese el password."
+			        },
+					submitHandler: function(form) {
+						$.post( $("#login").attr("action"), 
+								$("#login :input").serializeArray(), function(data){
+									console.log(JSON.parse(data));
+						});
+						/*form.submit( function(e){
+							return false;
+						});*/
+					}
+			    });
+				
+				/*$("#btnLogin").click(function (){
+					if($("#user").val() == "" || $("#pwd").val() == ""){
+						$("#errorMessage").html("por favor, ingrese credenciales");
+					}else{
+						$.post( $("#login").attr("action"), 
+								$("#login :input").serializeArray(), function(data){
+									console.log(JSON.parse(data));
+						});
+						
+					}
+					$("#login").submit( function(e){
+						e.preventDefault();
+					});
+				});*/
+			});
+		</script>
+	</head>
+	<body>
+		<div id="content_form">
+		<div class="anuncio"><strong>BIENVENIDO</strong></div>
+			<form name="login" id="login" action="pages/login.php" method="post">
+				<table border=0>
+					<tr>
+						<td><label class="form-group">Usuario:</label></td>
+						<td><input name="user" type="text" class="form-control" id="user" placeholder="usuario"></td>
+					</tr>
+					<tr><td colspan=2><label class="msj-validation" name="usermsj"></label></td></tr>
+					<tr>
+						<td><label class="form-group">Contraseña:</label></td>
+						<td><input name="pass" type="password" class="form-control" id="pwd" placeholder="password"></td>
+					</tr>
+					<tr><td colspan=2><label class="msj-validation" name="passmsj"></label></td></tr>
+					<tr>
+						<td></td>
+						<td><label class="form-group"><input type="checkbox"> Recordarme</label></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button id="btnLogin" type="submit" class="btn-default">Entrar</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
