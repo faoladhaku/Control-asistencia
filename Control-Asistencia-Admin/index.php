@@ -27,20 +27,21 @@
 
 	<body>
 
-		<div class="cabeza"><b>Assist Control Admin</b> </div>
+		<header><b>Control de Asistencia  Administrador</b> </header>
 		
-		<div id="barra">
+		<nav id="barra">
 		
-			<li><a href="#" id="iniciar">INICIAR</a></li>
-			<li><a href="#" id="registro">REGISTROS</a></li>
-			<li id="main"><a href="#" id="horario">HORARIOS</a></li>
+			<a class="main" href="#" id="iniciar">INICIAR</a>
+			<a href="#" id="registro">REGISTROS</a>
+			<a href="#" id="horario">HORARIOS</a>
 			<div id="nameUser"></div>
+			<div id="marca"></div>
 			
-		</div>
+		</nav>
 		
-		<div id="campo">
+		<section id="campo">
 		
-		</div>
+		</section>
 				
 	</body>
 	

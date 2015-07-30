@@ -43,9 +43,9 @@ function clickRecoverHorario() {
 }
 
 function changeSubMenu() {
-	$('#barra_lateral li').click(function(){
-		$('#barra_lateral li').removeAttr('style');
-		$(this).css('background-color', '#0f3e96');
+	$('#barra_lateral a').click(function(){
+		$('#barra_lateral a').removeAttr('style');
+		$(this).css('background-color', '#1b519b');
 	});
 }
 
@@ -63,21 +63,21 @@ $(document).ready(function(){
 	$('#campo').load('pages/horario.html', function(responseTxt, statusTxt, xhr){
 		if(statusTxt == "success")
 			clickCreateHorario();
-			$('#main_lateral').css('background-color', '#0f3e96');
+			$('.main_lateral').css('background-color', '#1b519b');
 		if(statusTxt == "error")
 			alert("Error: " + xhr.status + ": " + xhr.statusText);
 	});
-	$('#main').css('background-color', '#0f3e96');
+	$('.main').css('background-color', '#1b519b');
 	
-	$('li').click(function(){
-		$('li').removeAttr('style');
-		$(this).css('background-color', '#0f3e96');
+	$('a').click(function(){
+		$('a').removeAttr('style');
+		$(this).css('background-color', '#1b519b');
 	});	
 	$('#iniciar').click(function(){
 		$('#campo').load('pages/login.html', function(responseTxt, statusTxt, xhr){
 			if(statusTxt == "success")
 				clickSignIn();
-				$('#main_lateral').css('background-color', '#0f3e96');
+				$('.main_lateral').css('background-color', '#1b519b');
 			if(statusTxt == "error")
 				alert("Error: " + xhr.status + ": " + xhr.statusText);
 		});
@@ -86,7 +86,7 @@ $(document).ready(function(){
 		$('#campo').load('pages/horario.html', function(responseTxt, statusTxt, xhr){
 			if(statusTxt == "success")
 				clickCreateHorario();
-				$('#main_lateral').css('background-color', '#0f3e96');
+				$('.main_lateral').css('background-color', '#1b519b');
 			if(statusTxt == "error")
 				alert("Error: " + xhr.status + ": " + xhr.statusText);
 		});
@@ -95,7 +95,7 @@ $(document).ready(function(){
 		$('#campo').load('pages/registration.html', function(responseTxt, statusTxt, xhr){
 			if(statusTxt == "success")
 				clickdocente();
-				$('#main_lateral').css('background-color', '#0f3e96');
+				$('.main_lateral').css('background-color', '#1b519b');
 			if(statusTxt == "error")
 				alert("Error: " + xhr.status + ": " + xhr.statusText);
 		});
