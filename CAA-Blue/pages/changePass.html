@@ -1,0 +1,66 @@
+<!DOCTYPE html5>
+<html>
+	<head>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+
+				$('#npass').focus();
+			
+				$("#changeForm").validate({ 
+			        rules: { 
+						"npass": "required",
+						"repass": {
+							equalTo: "#npass"
+						}
+			        }, 
+			        messages: { 
+						"npass": "Ingrese el password.",
+						"repass": {
+							equalTo: "El password no coincide."
+						}
+			        },
+					submitHandler: function(form) {
+						var $save = confirm("Desea guardar los cambios?");
+						if ($save) {
+							$.post( $("#changeForm").attr("action"), 
+									$("#changeForm :input").serializeArray(), function(data){
+										var $data = JSON.parse(data);
+										if($data[0]){
+											$("#rptaForm").css('color', 'green');
+										}else{ $("#rptaForm").css('color', 'red'); }
+										$(".form-control").val("");
+										$("#rptaForm").text($data[1]);
+							});
+						}
+					}
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="content_form">
+			<form name="changeForm" id="changeForm" action="pages/changePass.php" method="post" onsubmit="return true">
+				<table border=0>
+					<tr>
+						<td><label class="form-group">Password:<label></td>
+						<td><input name="npass" type="password" class="form-control" id="npass" placeholder="password"></td>
+					</tr>
+					<tr>
+						<td><label class="form-group">Re-Password:<label></td>
+						<td><input name="repass" type="password" class="form-control" id="repass" placeholder="password"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div id="rptaForm" class="rptaForm"></div></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button id="btnChange" type="submit" class="btn-default">Cambiar</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

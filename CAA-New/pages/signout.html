@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+				$.post( "pages/logout.php", function(data){
+						var user = JSON.parse(data);
+						$("#nameUser").text(user);
+				});	
+			});
+		</script>
+	</head>
+	<body>
+		<div id="content_form">
+			<label class="form-group">Ud. a cerrado sesion...</label>
+		</div>
+	</body>
+</html>

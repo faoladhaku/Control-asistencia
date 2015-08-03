@@ -1,0 +1,60 @@
+<!DOCTYPE html5>
+<html>
+	<head>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function (){
+
+				$('#user').focus();
+			
+				$("#loginForm").validate({ 
+			        rules: { 
+						"user": "required",
+						"pass": "required"
+			        }, 
+			        messages: { 
+						"user": "Ingrese el usuario.",
+						"pass": "Ingrese el password."
+			        },
+					submitHandler: function(form) {
+						$.post( $("#loginForm").attr("action"), 
+								$("#loginForm :input").serializeArray(), function(data){
+									var user = JSON.parse(data);
+									if(user[0]){
+										$("#nameUser").text(user[1]);
+										$('#main_form').load('pages/msj_login.html');
+									}else{
+										$("#rptaForm").text(user[1]);
+									}
+						});
+					}
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="content_form">
+			<form name="loginForm" id="loginForm" action="pages/login.php" method="post">
+				<table border=0>
+					<tr>
+						<td><label class="form-group">USER:</label></td>
+						<td><input name="user" type="text" class="form-control" id="user" placeholder="usuario"></td>
+					</tr>
+					<tr>
+						<td><label class="form-group">PASSWORD:</label></td>
+						<td><input name="pass" type="password" class="form-control" id="pwd" placeholder="password"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div id="rptaForm" class="rptaForm"></div></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button id="btnLogin" type="submit" class="btn-default">Entrar</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

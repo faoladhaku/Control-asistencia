@@ -1,0 +1,159 @@
+<!DOCTYPE html5>
+<html>
+	<head>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+		<script type="text/javascript">			
+			function defaultAdd(){
+				$("#type").val("add");
+				$("#id").val("0");
+				$(".rptaForm").text("");
+				$(".form-title").text("Agregando...");
+			}
+			
+			function createTable(){
+				if($("#searchWord").val().length >= 2){
+					var valor = [{ name: "word", value: $("#searchWord").val() }];
+					$.post( "pages/selectUsuarios.php", valor, function(data){
+						var $data = JSON.parse(data);
+						$("#results").html("");
+						if($data.length){
+							var table = '<table class="tableSearch"><tr>';
+							table += '<th>Nro</th>';
+							table += '<th>Usuario</th>';
+							table += '<th></th></tr>';
+							$.each($data, function( index, value ) {
+								table += '<tr class="rowSelect">';
+								table += '<td>'+ (index + 1) +'</td>';
+								table += '<td>'+ value['usuario_nombre'] +'</td>';
+								table += '<td><button class="btnDelete" type="button" name='+ value['usuario_id'] +'>Eliminar</button></td>';
+								table += '</tr>';
+							});
+							table += '</table>';
+							$("#results").html(table);
+						}
+					});
+					$(".rptaForm").text("");
+				}
+			}
+		
+			$(document).ready(function (){
+				
+				$('#user').focus();
+				
+				$("#userForm").validate({ 
+					rules: { 
+						"user": "required",
+						"pass": "required",
+						"repass": {
+							equalTo: "#pass"
+						}
+			        }, 
+			        messages: { 
+						"user": "Ingrese el usuario.",
+						"pass": "Ingrese el password.",
+						"repass": {
+							equalTo: "El password no coincide"
+						}
+			        },
+					submitHandler: function(form) {
+						var $save = confirm("Desea guardar el registro?");
+						if ($save) {
+							$.post( $("#userForm").attr("action"), 
+								$("#userForm :input").serializeArray(), function(data){
+									var user = JSON.parse(data);
+									if(user[0]){
+										$(".form-control").val("");
+										$("#rptaForm").css('color', 'green');
+									}else{ $("#rptaForm").css('color', 'red'); }
+									defaultAdd();
+									createTable();
+									$("#rptaForm").text(user[1]);
+							});
+						}
+					}
+			    });
+				
+				$("#searchWord").keyup(function(e){
+					createTable();
+				});
+				
+				$("#results").on( "click", ".btnDelete",function() {
+					var $del = confirm("Esta seguro de eliminar este registro?");
+					if ($del) {
+						$("#type").val("delete");
+						$("#id").val($(this).attr('name'));
+						$.post( $("#userForm").attr("action"), 
+								$("#userForm :input").serializeArray(), function(data){
+									var $data = JSON.parse(data);
+									if($data[0]){
+										$("#msjResult").css('color', 'green');
+									}else{ $("#msjResult").css('color', 'red'); }
+									defaultAdd();
+									createTable();
+									$("#msjResult").text($data[1]);
+						});
+					}
+				});
+				
+				$("#btnClean").click(function() {
+					$(".form-control").val("");
+					defaultAdd();
+					$('.rowSelect').find('td').removeAttr('style');
+				});
+							
+			});
+		</script>
+	</head>
+	<body>
+		<div id="content_form">
+			<form name="userForm" id="userForm" action="pages/usuario.php" method="post">
+				<table border=0>
+					<tr>
+						<td colspan=2><label class="form-title">Agregando...</label></td>
+					</tr>
+					<tr>
+						<td><label class="form-group">Usuario:</label></td>
+						<td><input name="user" type="text" class="form-control" id="user" placeholder="usuario"></td>
+					</tr>
+					<tr>
+						<td><label class="form-group">Password:<label></td>
+						<td><input name="pass" type="password" class="form-control" id="pass" placeholder="password"></td>
+					</tr>
+					<tr>
+						<td><label class="form-group">Re-Password:<label></td>
+						<td><input name="repass" type="password" class="form-control" id="repass" placeholder="password"></td>
+					</tr>
+					<tr>
+						<td><input name="type" type="hidden" class="form-control" id="type" value="add"></td>
+						<td><div id="rptaForm" class="rptaForm"></div></td>
+					</tr>
+					<tr>
+						<td><input name="id" type="hidden" class="form-control" id="id" value="0"></td>
+						<td>
+							<button id="btnClean" type="button" class="btn-default">Limpiar</button>
+							<button id="btnGuardar" type="submit" class="btn-default">Guardar</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="search_form">
+			<table border=0>
+				<tr>
+					<td><label class="form-group">BUSCAR </label></td>
+					<td><input type="text" class="form-search" id="searchWord" placeholder="usuario"></td>
+				</tr>
+			</table>
+			
+			<div id="results"></div>
+			
+			<table border=0>
+				<tr>
+					<td><div id="msjResult" class="rptaForm"></div></td>
+				</tr>
+			</table>
+		<div>
+	</body>
+</html>
